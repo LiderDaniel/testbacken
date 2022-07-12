@@ -1,0 +1,12 @@
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\bin\Debug\net6.0\Tranferencia.MODEL.deps.json
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\bin\Debug\net6.0\Tranferencia.MODEL.dll
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\bin\Debug\net6.0\Tranferencia.MODEL.pdb
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\Tranferencia.MODEL.csproj.AssemblyReference.cache
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\Tranferencia.MODEL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\Tranferencia.MODEL.AssemblyInfoInputs.cache
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\Tranferencia.MODEL.AssemblyInfo.cs
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\Tranferencia.MODEL.csproj.CoreCompileInputs.cache
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\Tranferencia.MODEL.dll
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\refint\Tranferencia.MODEL.dll
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\Tranferencia.MODEL.pdb
+C:\Users\lsilva\source\repos\TRANFELIDER\Tranferencia.MODEL\obj\Debug\net6.0\ref\Tranferencia.MODEL.dll

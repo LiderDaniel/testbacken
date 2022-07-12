@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Sn81uvhFgUYPPQ90Lm/DN7ETqrPV9c21QUWHjTOMXLQtqgLRicaN8xYUGTppIbenTg/b5lVhCUGof93geDBieA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lsilva\\source\\repos\\TRANFELIDER\\Transferencia.DATA\\Transferencia.DATA.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lsilva\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\lsilva\\.nuget\\packages\\npgsql\\6.0.5\\npgsql.6.0.5.nupkg.sha512",
+    "C:\\Users\\lsilva\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
