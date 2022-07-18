@@ -32,26 +32,28 @@ namespace Transferencia.DATA.Repository
             var sql = @"
                     DELETE  
                     FROM public.""cliente""
-                    WHERE cedula =@idcedula
+                    WHERE cedula =@cedula
                    
 
                     ";
 
-            var result= await db.ExecuteAsync(sql, new { idcedula =cliente.idcedula});
+            var result= await db.ExecuteAsync(sql, new { cedula =cliente.cedula});
             return result > 0;
         }
 
         public async Task<IEnumerable<CLIENTE>> GetAllCliente()
         {
+
             var db = dbConnection();
 
-            var sql = @"
-                    SELECT cedula, tipo_doc, nombre_apellido
-                    FROM public.""cliente""
+            string sql = @"
+            
+             SELECT * FROM cliente";
 
-                    ";
+           var result = await db.QueryAsync<CLIENTE>(sql, new {});
 
-            return await db.QueryAsync<CLIENTE>(sql, new {});
+            return result;
+
         }
 
         public async Task<CLIENTE> GetClienteDetails(string idcedula)
@@ -59,12 +61,11 @@ namespace Transferencia.DATA.Repository
             var db = dbConnection();
 
             var sql = @"
-                    SELECT cedula, tipo_doc, nombre_apellido
-                    FROM public.""cliente""
-                    WHERE cedula =@idcedula
+                    SELECT * FROM public.cliente
+                    WHERE cedula =@cedula
                     ";
 
-            return await db.QueryFirstOrDefaultAsync<CLIENTE>(sql, new { });
+            return await db.QueryFirstOrDefaultAsync<CLIENTE>(sql, new {cedula = idcedula });
         }
 
         public async Task<bool> InsertCliente(CLIENTE cliente)
@@ -74,13 +75,13 @@ namespace Transferencia.DATA.Repository
             var sql = @"
 
                     INSERT INTO public.""cliente""(cedula, tipo_doc, nombre_apellido)
-                    VALUES(@idcedula,@tipo_docu,@nombreapellido)
+                    VALUES(@cedula,@tipo_doc,@nombre_apellido)
                    
                    
                   
                     ";
 
-            var result =  await db.ExecuteAsync(sql, new { cliente.idcedula, cliente.tipo_docu, cliente.nombreapellido });
+            var result =  await db.ExecuteAsync(sql, new { cliente.cedula, cliente.tipo_doc, cliente.nombre_apellido });
             return result > 0;
         }
 
@@ -90,15 +91,16 @@ namespace Transferencia.DATA.Repository
 
             var sql = @"
 
-                    UDPATE INTO public.""cliente""
-                    SET cedula= @idcedula ,
-                        tipo_doc= @tipo_docu ,
-                        nombre_apellido= @nombreapellido ,
-                    WHERE cedula= @idcedula
+        
+                    UPDATE cliente
+                    SET   cedula= @cedula ,
+                        tipo_doc= @tipo_doc ,
+                        nombre_apellido= @nombre_apellido 
+                    WHERE cedula= @cedula
 
-                    ";
+            ";
 
-            var result = await db.ExecuteAsync(sql, new { cliente.idcedula, cliente.tipo_docu, cliente.nombreapellido });
+            var result = await db.ExecuteAsync(sql, new { cliente.cedula, cliente.tipo_doc, cliente.nombre_apellido });
             return result > 0;
         }
 

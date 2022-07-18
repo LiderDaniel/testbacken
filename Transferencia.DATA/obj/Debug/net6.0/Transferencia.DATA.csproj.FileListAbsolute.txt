@@ -13,3 +13,10 @@ C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\obj\Debug\net6.0\Tra
 C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\obj\Debug\net6.0\refint\Transferencia.DATA.dll
 C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\obj\Debug\net6.0\Transferencia.DATA.pdb
 C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\obj\Debug\net6.0\ref\Transferencia.DATA.dll
+C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\bin\Debug\net6.0\libzstd.dll
+C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\bin\Debug\net6.0\snappy32.dll
+C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\bin\Debug\net6.0\snappy64.dll
+C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\bin\Debug\net6.0\libsnappy64.so
+C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\bin\Debug\net6.0\libzstd.so
+C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\bin\Debug\net6.0\libsnappy64.dylib
+C:\Users\lsilva\source\repos\TRANFELIDER\Transferencia.DATA\bin\Debug\net6.0\libzstd.dylib

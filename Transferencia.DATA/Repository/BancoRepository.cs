@@ -24,46 +24,47 @@ namespace Transferencia.DATA.Repository
         }
 
 
-        public  async Task<bool> DeleteBanco(BANCO banco)
+        public async Task<bool> DeleteBanco(BANCO banco)
         {
             var db = dbConnection();
 
             var sql = @"
                     DELETE  
                     FROM public.""banco""
-                    WHERE codigo_banco =@COD_BANCO
+                    WHERE codigo_banco =@codigo_banco
                    
-
                     ";
 
-            var result = await db.ExecuteAsync(sql, new { COD_BANCO = banco.COD_BANCO });
+            var result = await db.ExecuteAsync(sql, new { codigo_banco = banco.codigo_banco });
             return result > 0;
         }
 
-        public  async Task<IEnumerable<BANCO>> GetAllBanco()
+        public async Task<IEnumerable<BANCO>> GetAllBanco()
         {
             var db = dbConnection();
+            string sql = @"
+            
+             SELECT * FROM banco
+            ";
 
-            var sql = @"
-                    SELECT codigo_banco, direccion, nombre_banco
-                    FROM public.""banco""
+            var response = await db.QueryAsync<BANCO>(sql);
 
-                    ";
-
-            return await db.QueryAsync<BANCO>(sql, new { });
+            return response;
         }
 
-        public async Task<BANCO> GetBancoDetails(string id)
+        public async Task<BANCO> GetBancoDetails(string COD)
         {
             var db = dbConnection();
 
             var sql = @"
-                    SELECT codigo_banco, direccion, nombre_banco
-                    FROM public.""banco""
-                    WHERE codigo_banco =@COD_BANCO
+                    SELECT *FROM public.banco
+                    WHERE codigo_banco = @codigo_banco
                     ";
 
-            return await db.QueryFirstOrDefaultAsync<BANCO>(sql, new { });
+            return await db.QueryFirstOrDefaultAsync<BANCO>(sql, new { codigo_banco = COD  });
+
+
+           
         }
 
         public async Task<bool> InsertBanco(BANCO banco)
@@ -71,33 +72,28 @@ namespace Transferencia.DATA.Repository
             var db = dbConnection();
 
             var sql = @"
-
                     INSERT INTO public.""banco""(codigo_banco, direccion, nombre_banco)
-                    VALUES(@COD_BANCO,@DIRECCION,@NOMBRE_BANCO)
+                    VALUES(@codigo_banco,@DIRECCION,@NOMBRE_BANCO)
                    
                    
                   
                     ";
 
-            var result = await db.ExecuteAsync(sql, new { banco.COD_BANCO, banco.DIRECCION, banco.NOMBRE_BANCO });
+            var result = await db.ExecuteAsync(sql, new { banco.codigo_banco, banco.DIRECCION, banco.NOMBRE_BANCO });
             return result > 0;
         }
 
-        public  async   Task<bool> UpdateBanco(BANCO banco)
+        public async Task<bool> UpdateBanco(BANCO banco)
         {
             var db = dbConnection();
 
-            var sql = @"
+            string sql = @"
+                    UPDATE banco
+                    SET  direccion = @DIRECCION ,
+                        nombre_banco = @NOMBRE_BANCO 
+                    WHERE codigo_banco= @codigo_banco";
 
-                    UDPATE INTO public.""banco""
-                    SET codigo_banco= @COD_BANCO ,
-                        direccion= @DIRECCION ,
-                        nombre_banco= @NOMBRE_BANCO ,
-                    WHERE codigo_banco= @COD_BANCO
-
-                    ";
-
-            var result = await db.ExecuteAsync(sql, new { banco.COD_BANCO, banco.DIRECCION, banco.NOMBRE_BANCO });
+            var result = await db.ExecuteAsync(sql, new { banco.DIRECCION, banco.NOMBRE_BANCO, banco.codigo_banco });
             return result > 0;
         }
     }

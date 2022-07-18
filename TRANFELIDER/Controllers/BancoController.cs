@@ -22,7 +22,7 @@ namespace TRANFELIDER.Controllers
             return Ok(await _bancoRepository.GetAllBanco());
         }
 
-        [HttpGet("{COD_BANCO}")]
+        [HttpGet("{codban}")]
         public async Task<IActionResult> Getbancodetailss(string codban)
         {
             return Ok(await _bancoRepository.GetBancoDetails(codban));
@@ -36,6 +36,8 @@ namespace TRANFELIDER.Controllers
                 return BadRequest();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
+           
             var created = await _bancoRepository.InsertBanco(banco);
 
             return Created("created", created);
@@ -60,7 +62,7 @@ namespace TRANFELIDER.Controllers
         public async Task<IActionResult> DELETEBANCO(string codig)
         {
 
-            await _bancoRepository.DeleteBanco(new BANCO { COD_BANCO = codig });
+            await _bancoRepository.DeleteBanco(new BANCO { codigo_banco = codig });
 
             return NoContent();
 

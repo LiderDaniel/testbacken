@@ -17,13 +17,14 @@ namespace TRANFELIDER.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Getallcliente()
+        public async Task<IActionResult> Getallclientes()
         {
 
             return Ok(await _clienteRepository.GetAllCliente());
         }
-        [HttpGet("{idcedula}")]
-        public async Task<IActionResult> Getclientesdetailss(string cedulas)
+
+        [HttpGet("{cedulas}")]
+        public async Task<IActionResult> GetClienteDetails(string cedulas)
         {
             return Ok(await _clienteRepository.GetClienteDetails(cedulas));
          
@@ -59,7 +60,7 @@ namespace TRANFELIDER.Controllers
         public async Task<IActionResult> DELETECLIENTE( string IDCEDULA)
         {
            
-            await _clienteRepository.DeleteCliente(new CLIENTE { idcedula= IDCEDULA });
+            await _clienteRepository.DeleteCliente(new CLIENTE { cedula= IDCEDULA });
 
             return NoContent();
 

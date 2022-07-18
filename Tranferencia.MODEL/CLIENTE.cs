@@ -8,10 +8,10 @@ namespace Tranferencia.MODEL
 {
   public class CLIENTE
     {
-        public string idcedula { get; set; }
+        public string cedula { get; set; }
 
-        public string tipo_docu { get; set; }
+        public string tipo_doc { get; set; }
 
-        public string nombreapellido { get; set; }
+        public string nombre_apellido { get; set; }
     }
 }

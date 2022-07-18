@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AvE/qv52fFa7NAes8KNXdhW5gj2WJHoCCC90jR+eiWdvQGLeqA/PUbhJiTVyyPqBepbmyMxJwR5roPnX1CzJWA==",
+  "dgSpecHash": "UnUQnDW/lPdKuOnrHYaZ5Q9rjYsMGmeZvSY5nxKtzNzwoPRtlDYWUZQnP8OAQjB1OfO7viBJN+XvMHkL9LuXZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\lsilva\\source\\repos\\TRANFELIDER\\Tranferencia.MODEL\\Tranferencia.MODEL.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\lsilva\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512"
+  ],
   "logs": []
 }

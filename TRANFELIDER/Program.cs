@@ -17,6 +17,8 @@ builder.Services.AddSingleton(postgresSQLConnectionConfiguration);
 builder.Services.AddScoped<ICliente, ClienteRepository>();
 builder.Services.AddScoped<ICuenta, CuentaRepostitory>();
 builder.Services.AddScoped<IBanco, BancoRepository>();
+builder.Services.AddScoped<ITransferencia,TransferenciaRepository>();
+
 
 var app = builder.Build();
 

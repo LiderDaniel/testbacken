@@ -9,6 +9,7 @@ namespace Transferencia.DATA.Repository
 {
     public interface IBanco
     {
+                                
         Task<IEnumerable<BANCO>> GetAllBanco();
 
         Task<BANCO> GetBancoDetails(string id);

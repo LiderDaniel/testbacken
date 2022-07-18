@@ -16,7 +16,7 @@ namespace Tranferencia.MODEL
 
         public string CEDULA_CLIENTE { get; set; }
 
-        public string SALDO { get; set; }
+        public int SALDO { get; set; }
 
         public string COD_BANCO { get; set; }   
     }

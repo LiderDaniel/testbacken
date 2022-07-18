@@ -41,26 +41,24 @@ namespace Transferencia.DATA.Repository
         {
             var db = dbConnection();
 
-            var sql = @"
-                    SELECT id_cta, num_cta, moneda, cedula_cliente , saldo, cod_banco
-                    FROM public.""cuenta""
-
+            string sql = @"
+                      SELECT * FROM cuenta
                     ";
 
-            return await db.QueryAsync<CUENTA>(sql, new { });
+           var result = await db.QueryAsync<CUENTA>(sql);
+            return result;
         }
 
-        public async Task<CUENTA> GetCuentaDetails(string id)
+        public async Task<CUENTA> GetCuentaDetails(string IDCUEN)
         {
             var db = dbConnection();
 
             var sql = @"
-                    SELECT id_cta, num_cta, moneda, cedula_cliente , saldo, cod_banco
-                    FROM public.""cuenta""
-                    WHERE id_cta =@ID_CTA
-                    ";
+                    SELECT * FROM public.cuenta
+                    WHERE id_cta =@ID_CTA";
 
-            return await db.QueryFirstOrDefaultAsync<CUENTA>(sql, new { });
+            return await db.QueryFirstOrDefaultAsync<CUENTA>(sql, new { ID_CTA = IDCUEN});
+
         }
 
         public  async Task<bool> InsertCuenta(CUENTA cuenta)
@@ -68,37 +66,34 @@ namespace Transferencia.DATA.Repository
             var db = dbConnection();
 
             var sql = @"
+              INSERT INTO public.""cuenta""(id_cta,num_cta, moneda, cedula_cliente, saldo,cod_banco)
+            VALUES(@ID_CTA, @NUM_CTA, @MONEDA, @CEDULA_CLIENTE, @SALDO , @COD_BANCO)
+        ";
 
-                    INSERT INTO public.""cliente""(id_cta, num_cta, moneda, cedula_cliente , saldo, cod_bancoo)
-                    VALUES(@ID_CTA,@NUM_CTA,@MONEDA , @CEDULA_CLIENTE , @SALDO , @COD_BANCO)
-                   
-                   
-                  
-                    ";
-
-            var result = await db.ExecuteAsync(sql, new { cuenta.ID_CTA, cuenta.NUM_CTA, cuenta.MONEDA, cuenta.CEDULA_CLIENTE, cuenta.SALDO,cuenta.COD_BANCO });
-            return result > 0;
+            var result = await db.ExecuteAsync(sql, new { cuenta.ID_CTA, cuenta.NUM_CTA, cuenta.MONEDA, cuenta.CEDULA_CLIENTE, cuenta.SALDO, cuenta.COD_BANCO });
+            return result > 0;  
         }
 
         public async Task<bool> UpdateCuenta(CUENTA cuenta)
         {
             var db = dbConnection();
 
-            var sql = @"
+            string sql = @"
+ 
+                 UPDATE cuenta
+                 SET id_cta = @ID_CTA,
+                     num_cta =  @NUM_CTA,
+                     moneda =  @MONEDA,
+                     saldo = @SALDO,
+                    cod_banco = @COD_BANCO
+                    
+                WHERE cedula_cliente = @CEDULA_CLIENTE
 
-                    UDPATE INTO public.""cuenta""
-                    SET id_cta= @ID_CTA ,
-                        num_cta= @NUM_CTA ,
-                        moneda= @MONEDA ,
-                        cedula_cliente=  @CEDULA_CLIENTE,
-                        saldo = @SALDO,
-                        cod_bancoo =  @COD_BANCO,
-                    WHERE cedula= idcedula
-
-                    ";
-
-            var result = await db.ExecuteAsync(sql, new { cuenta.ID_CTA, cuenta.NUM_CTA, cuenta.MONEDA, cuenta.CEDULA_CLIENTE, cuenta.SALDO,cuenta.COD_BANCO });
+                    
+";
+            var result = await db.ExecuteAsync(sql, new { cuenta.ID_CTA, cuenta.NUM_CTA, cuenta.MONEDA, cuenta.CEDULA_CLIENTE, cuenta.SALDO, cuenta.COD_BANCO });
             return result > 0;
         }
     }
-}
+    }
+
