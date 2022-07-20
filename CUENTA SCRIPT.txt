@@ -1,0 +1,24 @@
+//CUENTA
+-- Table: public.cuenta
+
+-- DROP TABLE IF EXISTS public.cuenta;
+
+CREATE TABLE IF NOT EXISTS public.cuenta
+(
+    id_cta character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    num_cta character varying(10) COLLATE pg_catalog."default",
+    moneda character varying(3) COLLATE pg_catalog."default",
+    cedula_cliente character varying(20) COLLATE pg_catalog."default",
+    saldo numeric,
+    cod_banco character varying(10) COLLATE pg_catalog."default",
+    CONSTRAINT cuenta_pkey PRIMARY KEY (id_cta),
+    CONSTRAINT constra_unique UNIQUE (num_cta),
+    CONSTRAINT contrainnew FOREIGN KEY (cod_banco)
+        REFERENCES public.banco (codigo_banco) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT cuenta_cedula_cliente_fkey FOREIGN KEY (cedula_cliente)
+        REFERENCES public.cliente (cedula) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
