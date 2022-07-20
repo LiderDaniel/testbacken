@@ -13,7 +13,7 @@ namespace Transferencia.DATA.Repository
 
         public ValidarBanco()
         {
-            RuleFor(model => model.NOMBRE_BANCO).NotNull().NotEmpty();
+            RuleFor(model => model.NOMBRE_BANCO).NotNull().NotEmpty().Length(8);
             RuleFor(model => model.codigo_banco).NotNull().NotEmpty();
             RuleFor(model => model.DIRECCION).NotNull().NotEmpty();
            

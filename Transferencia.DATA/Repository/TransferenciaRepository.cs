@@ -66,21 +66,21 @@ namespace Transferencia.DATA.Repository
             var db = dbConnection();
 
             var sql = @"
-                    INSERT INTO public.""transferencias""(id_transaccion,num_cta,cedula_cliente,fecha,monto,estado, num_cuenta_origen ,num_cuenta_destino )
-                                                   VALUES(@id_transaccion,@num_cta,@cedula_cliente,@fecha,@monto,@estado,@num_cuenta_origen,@num_cuenta_destino)
+                    INSERT INTO public.""transferencias""(id_transaccion,num_cta,cedula_cliente,fecha,monto,estado ,num_cuenta_destino,banco_origen,banco_destino)
+                                                   VALUES(@id_transaccion,@num_cta,@cedula_cliente,@fecha,@monto,@estado,@num_cuenta_destino,@banco_origen,@banco_destino)
  
                     ";
 
-            var resutl = await db.ExecuteAsync(sql, new { transferencia.id_transaccion, transferencia.num_cta, transferencia.cedula_cliente, transferencia.fecha, transferencia.monto, transferencia.estado,transferencia.num_cuenta_origen,transferencia.num_cuenta_destino });
+            var resutl = await db.ExecuteAsync(sql, new { transferencia.id_transaccion, transferencia.num_cta, transferencia.cedula_cliente, transferencia.fecha, transferencia.monto, transferencia.estado,transferencia.num_cuenta_destino,transferencia.banco_origen,transferencia.banco_destino });
             if (resutl > 0)
             {
                 string egresoingresotrans = @" UPDATE cuenta 
                                                set saldo = saldo - @monto
-                                                where num_cta = @num_cuenta_origen
+                                                where num_cta = @num_cta
 
         
 ";
-                await db.ExecuteAsync(egresoingresotrans, new { transferencia.monto, transferencia.num_cuenta_origen });
+                await db.ExecuteAsync(egresoingresotrans, new { transferencia.monto, transferencia.num_cta });
 
                 string ingresodetranfe = @" UPDATE cuenta
                                             set saldo = saldo+ @monto
@@ -104,13 +104,14 @@ namespace Transferencia.DATA.Repository
                         fecha = @fecha,
                         monto = @monto,
                         estado = @estado,
-                        num_cuenta_origen = @num_cuenta_origen,
-                        num_cuenta_destino = @num_cuenta_destino
+                        num_cuenta_destino = @num_cuenta_destino,
+                        banco_origen    = @banco_origen,
+                        banco_destino   = @banco_destino
                         
                         
                     WHERE id_transaccion = @id_transaccion";
 
-            var result = await db.ExecuteAsync(sql, new { transferencia.id_transaccion, transferencia.num_cta, transferencia.cedula_cliente, transferencia.fecha, transferencia.monto, transferencia.estado, transferencia.num_cuenta_origen, transferencia.num_cuenta_destino });
+            var result = await db.ExecuteAsync(sql, new { transferencia.id_transaccion, transferencia.num_cta, transferencia.cedula_cliente, transferencia.fecha, transferencia.monto, transferencia.estado, transferencia.num_cuenta_destino, transferencia.banco_origen,transferencia.banco_destino});
 
             return result > 0;
         }
@@ -147,35 +148,37 @@ namespace Transferencia.DATA.Repository
             return await db.QueryFirstOrDefaultAsync<TRANFERENCIA>(sql, new { id_transaccion = id });
         }
 
-        public async  Task<TRANFERENCIA> GetTransferenciaaHistorialEnviado(string id)
+        public async  Task<IEnumerable<TRANFERENCIA>> GetTransferenciaaHistorialEnviado(string num_cuenta_origen)
         {
             var db = dbConnection();
             string sql = @"
 
-           
-            SELECT num_cuenta_origen
-         FROM transferencias
-        WHERE num_cuenta_origen = @num_cuenta_origen;
+                SELECT * FROM transferencias
+                WHERE num_cuenta_origen = @num_cuenta_origen
+         
         
             ";
+            var response = await db.QueryAsync<TRANFERENCIA>(sql, new { num_cuenta_origen });
 
-            return await db.QueryFirstOrDefaultAsync<TRANFERENCIA>(sql, new { num_cuenta_origen = id });
+            return response;
+            
         }
 
-        public async Task<TRANFERENCIA> GetTransferenciaaHistorialRecibido(string id)
+        public async Task<IEnumerable<TRANFERENCIA>> GetTransferenciaaHistorialRecibido(string num_cuenta_destino)
         {
 
             var db = dbConnection();
             string sql = @"
 
            
-            SELECT num_cuenta_origen
-         FROM transferencias
-        WHERE num_cuenta_destino = @num_cuenta_destino;
+            SELECT * FROM transferencias
+            WHERE num_cuenta_destino = @num_cuenta_destino;
         
             ";
 
-            return await db.QueryFirstOrDefaultAsync<TRANFERENCIA>(sql, new { num_cuenta_destino = id });
+            var result = await db.QueryAsync<TRANFERENCIA>(sql, new { num_cuenta_destino });
+
+            return result;
         }
     }
 

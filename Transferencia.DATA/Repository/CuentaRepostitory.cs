@@ -81,13 +81,12 @@ namespace Transferencia.DATA.Repository
             string sql = @"
  
                  UPDATE cuenta
-                 SET id_cta = @ID_CTA,
-                     num_cta =  @NUM_CTA,
+                 SET  num_cta =  @NUM_CTA,
                      moneda =  @MONEDA,
                      saldo = @SALDO,
                     cod_banco = @COD_BANCO
                     
-                WHERE cedula_cliente = @CEDULA_CLIENTE
+                WHERE id_cta = @id_cta
 
                     
 ";

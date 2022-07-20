@@ -15,9 +15,9 @@ namespace Transferencia.DATA.Repository
         Task<TRANFERENCIA> GetAllTranferenciaestado(string id);
         Task<TRANFERENCIA> GetTransferenciaDetails(string id);
 
-        Task<TRANFERENCIA> GetTransferenciaaHistorialEnviado(string id);
+        Task<IEnumerable<TRANFERENCIA>>GetTransferenciaaHistorialEnviado(string id);
 
-        Task<TRANFERENCIA> GetTransferenciaaHistorialRecibido(string id);
+        Task<IEnumerable<TRANFERENCIA>>GetTransferenciaaHistorialRecibido(string id);
 
 
         Task<bool> InsertTransferencia(TRANFERENCIA transferencia);

@@ -17,10 +17,17 @@ namespace TRANFELIDER.Controllers
         }
 
 
+
+        ValidarTransferencia validartransferencia = new ValidarTransferencia();
+
+
+
         [HttpGet]
         public async Task<IActionResult> Getalltransferencia()
         {
             return Ok(await _transferenciaRepository.GetAllTranferencia());
+
+            
         }
 
 
@@ -31,16 +38,16 @@ namespace TRANFELIDER.Controllers
         }
 
 
-        [HttpGet("{idtra}/HistorialEnviado")]
-        public async Task<IActionResult> GetTransferenciaesEnviado(string idtra)
+        [HttpGet("{numcuenta}/HistorialEnviado")]
+        public async Task<IActionResult> GetTransferenciaesEnviado(string numcuenta)
         {
-            return Ok(await _transferenciaRepository.GetTransferenciaaHistorialEnviado(idtra));
+            return Ok(await _transferenciaRepository.GetTransferenciaaHistorialEnviado(numcuenta));
         }
 
-        [HttpGet("{idtra}/HistorialRecibido")]
-        public async Task<IActionResult> GetTransferenciaesRecibido(string idtra)
+        [HttpGet("{numcuenta}/HistorialRecibido")]
+        public async Task<IActionResult> GetTransferenciaesRecibido(string numcuenta)
         {
-            return Ok(await _transferenciaRepository.GetTransferenciaaHistorialRecibido(idtra));
+            return Ok(await _transferenciaRepository.GetTransferenciaaHistorialRecibido(numcuenta));
         }
 
         [HttpGet("{trans}")]
@@ -58,10 +65,10 @@ namespace TRANFELIDER.Controllers
                 return BadRequest();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            if (transfe.num_cuenta_origen == transfe.num_cuenta_destino)
+
+            
+            if (transfe.num_cta == transfe.num_cuenta_destino)
                 throw new Exception("EL NUMERO DE CUENTA NO DEBE SER IGUAL AL NUMERO DE CUENTA DESTINO");
-            if (transfe.saldo < transfe.monto)
-                throw new Exception("El MONTO INGRESADO ES MAYOR AL SALDO DISPONIBLE ");
             Guid guid = Guid.NewGuid();
             var TRANFERENCIA = new TRANFERENCIA()
             {
@@ -78,8 +85,10 @@ namespace TRANFELIDER.Controllers
 
                 estado = transfe.estado,
 
+                banco_origen = transfe.banco_origen,
 
-                num_cuenta_origen = transfe.num_cuenta_origen,
+                banco_destino = transfe.banco_destino,
+
 
                 num_cuenta_destino = transfe.num_cuenta_destino
             };

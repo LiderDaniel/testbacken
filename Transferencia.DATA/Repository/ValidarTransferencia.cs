@@ -17,14 +17,9 @@ namespace Transferencia.DATA.Repository
             RuleFor(model => model.cedula_cliente).NotNull().NotEmpty();
             RuleFor(model => model.num_cta).NotNull().NotEmpty();
             RuleFor(model => model.num_cuenta_destino).NotNull().NotEmpty();
-            RuleFor(model => model.num_cuenta_origen).NotNull().NotEmpty();
+         
 
-            string[] condiciones = new string[] {
-
-
-               "PENDIENTE","TRANFERIDO","RECHAZADO"
-            };
-            RuleFor(model =>model.estado).NotNull().NotEmpty().Must(x => condiciones.Contains(x));
+           
         }
 
 
